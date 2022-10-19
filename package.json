@@ -1,0 +1,20 @@
+{
+  "name": "sharefoodapi",
+  "version": "1.0.0",
+  "description": "Build and deploy a very simple API that does the following",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.6.0",
+    "nodemon": "^2.0.20",
+    "timeago.js": "^4.0.2"
+  }
+}
