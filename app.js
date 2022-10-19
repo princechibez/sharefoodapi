@@ -21,6 +21,10 @@ const callLimiter = rateLimit({
     message: "Try again after one second"
 });
 
+app.get("/", (req, res) => {
+    res.send("Hello consumer, welcome to this API")
+})
+
 // The route for returning persons age
 app.get("/howold/:timestamp", callLimiter, (req, res, next) => {
     try {
