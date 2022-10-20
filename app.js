@@ -7,12 +7,12 @@ const { format } = require("timeago.js");
 
 const app = express();
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Methods", "GET");
-//   next();
-// });
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next()
+  });
 
 // The API call controller
 const callLimiter = rateLimit({
@@ -36,7 +36,7 @@ app.get("/howold", callLimiter, (req, res, next) => {
     // check if query is in a valid date format
     if (new Date(final).toString() === "Invalid Date") {
       let error = new Error("Invalid date parameter");
-      error.statusCode = 429;
+      error.statusCode = 400;
       throw error;
     }
 
