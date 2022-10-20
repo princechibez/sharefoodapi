@@ -1,18 +1,17 @@
 const express = require("express");
 const { rateLimit } = require("express-rate-limit");
 const { format } = require("timeago.js");
-
-// Because this is a small application
-// i am not going to implement the MVC pattern of writing nodejs
+const cors = require("cors");
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE");
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next()
-  });
+app.use(cors())
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE");
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     next()
+//   });
 
 // The API call controller
 const callLimiter = rateLimit({
@@ -24,7 +23,7 @@ const callLimiter = rateLimit({
 app.get("/howold", callLimiter, (req, res, next) => {
   try {
     const dob = req.query.dob;
-    if (dob === undefined) {
+    if (dob === undefined || dob === "") {
       return res.status(400).send("Please add a query parameter with a valid timestamp to it");
     }
 
