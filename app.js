@@ -21,7 +21,7 @@ const callLimiter = rateLimit({
     message: "Try again after one second"
 });
 
-// app.use(callLimiter)
+app.use(callLimiter)
 // The route for returning persons age
 app.get("/howold", callLimiter, (req, res, next) => {
     try {
