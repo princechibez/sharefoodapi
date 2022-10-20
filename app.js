@@ -21,22 +21,25 @@ const callLimiter = rateLimit({
     message: "Try again after one second"
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello consumer, welcome to this API")
-})
-
+app.use(callLimiter)
 // The route for returning persons age
-app.get("/howold/:timestamp", callLimiter, (req, res, next) => {
+app.get("/howold", (req, res, next) => {
     try {
-        const dob = req.params.timestamp;
-        // check if parameter is in a valid date format
-        if(isNaN(Date.parse(dob))) {
+        const dob = req.query.dob;          // Get the the timestamp from the query
+
+        // Put them in proper format
+        let formattedDOB1 = dob.split(" ")[0];
+        let formattedDOB2 = dob.split(" ")[1];
+        const final = `${formattedDOB1}+${formattedDOB2}`
+        
+        // check if query is in a valid date format
+        if(new Date(final).toString() === "Invalid Date") {
             let error = new Error("Invalid date parameter");
             error.statusCode = 401;
             throw error
         }
-        const time = format(dob)
-        console.log(time)
+        
+        const time = format(final)
         res.send(time)
     } catch (err) {
         next(err)

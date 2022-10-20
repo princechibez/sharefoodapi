@@ -4,5 +4,5 @@
     "email": "chibezprince@gmail.com",
     "githubUsername": "princechibez",
     "deployedAppURL": "https://sharefood-assessment-api.herokuapp.com/",
-    "explainer": ""
+    "explainer": "This API takes a query parameter that holds a timestamp and is expected to return the number of years from the timestamp till date"
 }
