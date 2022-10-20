@@ -21,11 +21,9 @@ const callLimiter = rateLimit({
     message: "Try again after one second"
 });
 
-app.use(callLimiter)
-// The route for returning persons age
 app.get("/howold", callLimiter, (req, res, next) => {
     try {
-        const dob = req.query.dob;          // Get the the timestamp from the query
+        const dob = req.query.dob;
 
         // Put them in proper format
         let formattedDOB1 = dob.split(" ")[0];
