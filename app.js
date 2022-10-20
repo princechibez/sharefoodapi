@@ -25,7 +25,7 @@ app.get("/howold", callLimiter, (req, res, next) => {
   try {
     const dob = req.query.dob;
     if (dob === undefined) {
-      return res.send("Please add a query parameter with a valid timestamp to it");
+      return res.status(400).send("Please add a query parameter with a valid timestamp to it");
     }
 
     // Put them in proper format
@@ -36,12 +36,12 @@ app.get("/howold", callLimiter, (req, res, next) => {
     // check if query is in a valid date format
     if (new Date(final).toString() === "Invalid Date") {
       let error = new Error("Invalid date parameter");
-      error.statusCode = 401;
+      error.statusCode = 429;
       throw error;
     }
 
     const time = format(final);
-    res.send(time);
+    res.status(200).send(time);
   } catch (err) {
     next(err);
   }
