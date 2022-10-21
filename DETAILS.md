@@ -2,11 +2,11 @@
 
 # Sharefood assessment API
 
-## Table of contents
+## Contents
 
 
 - [Implementation detail](#implementation-detail)
-  - [Built with](#built-with)
+- [Built with](#built-with)
 
 
 ### Implementation detail
