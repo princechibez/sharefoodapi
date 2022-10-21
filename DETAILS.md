@@ -4,19 +4,23 @@
 
 ## Table of contents
 
-  - [The challenge](#the-challenge)
-- [How does this works](#how-does-this-works)
+
+- [Implementation detail](#implementation-detail)
   - [Built with](#built-with)
 
 
-### The challenge
+### Implementation detail
 
-- Build an API that takes a parameter of a date of birth timestamp, and returns the number of years till date prior to the parameter
+- Made a route with a GET request method to */howold*, which requires a query paramter 
+with a valid timestamp.
 
-### How does this works
+- The above route checks the value of the timestamp to make sure it's in a valid date format
 
-- Check extensively if the parameter is in a correct and standard date format
-- Also handle errors professionally if their are any occurences or exceptions
+- Returns an error message via an error middleware whenever an invalid date format is detected
+
+- After the validation, it uses a third party library called *timeago.js* to calculate the length of the timestamp to the current time the route was visited and returns it to the request source with a status code of 200.
+
+- This application also makes use of a library called *express-rate-limit* to regulate how the route is visited by making sure there are no more than 3 requests made per second and also returns a message whenever the calls exceeds the regulated amount
 
 ### Built with
 
