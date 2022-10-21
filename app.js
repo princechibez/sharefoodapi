@@ -5,7 +5,8 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors({origin: "*", allowedHeaders: "Content-Type, Authorization", methods: "POST, GET, PUT, PATCH, DELETE"}))
+app.use(cors({ origin: "*", allowedHeaders: "Content-Type, Authorization", methods: "POST, GET, PUT, PATCH, DELETE" }));
+
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 //     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE");
